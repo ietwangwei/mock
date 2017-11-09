@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script type="text/javascript" src="./jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="header"></div>
+      <div class="container">
+        <form action="">
+          <div class="group"><span>路径:</span>
+            <input id="url" type="text">
+          </div>
+          <div class="group"><span>数据:</span>
+            <input id="data" type="text">
+          </div>
+          <button id="submit">submit</button>
+        </form>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script type="text/javascript">
+    	var url = $("#url").val();
+    	var data = $("#data").val();
+    	$("#submit").on("click",function(){
+    		$.ajax({
+	    		type : "post",
+	    		url : "http://localhost:3000/mock/session",
+	    		data : {
+	    			url : data
+	    		},
+	    		datatype : "json",
+	    		success : function(result){
+	    			console.log('ahah');
+	    		}
+	    	})
+    	})
+    </script>
+  </body>
+</html>

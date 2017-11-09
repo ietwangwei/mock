@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title 登录
+    script(type='text/javascript', src='../public/javascripts/jquery.min.js')
+    link(rel="stylesheet",type="text/css",href="../public/stylesheets/bootstrap.min.css")
+    link(rel="stylesheet",type="text/css",href="../public/stylesheets/style.css")
+  body
+    #wrap
+      .header.mb100
+        .text-center
+          h1 mock
+      .container
+        .line-header.mb25
+          h4 .填写模拟接口和返回数据:
+        .col-xs-12
+          .form-group-sm.col-xs-12.mb25
+            .col-xs-1
+              span 路径:
+            .col-xs-3
+              input#url.form-control(type='text')
+          .form-group-sm.col-xs-12.mb25
+            .col-xs-1
+              span 数据:
+            .col-xs-6
+              textarea#data.form-control.row8(type='text')
+          .form-group-sm.col-xs-12.mb25
+            .col-xs-1
+              button#submit.btn.btn-primary.btn-sm submit
+      .footer
+    script(type='text/javascript').
+      $("#url").val("/mock/session/");
+      $("#submit").on("click",function(){
+        var url = $("#url").val();
+        var data = $("#data").val();
+        $.ajax({
+        type : "post",
+        url : url,
+        data : {
+          "url" : url,
+          "data" : data
+        },
+        datatype : "json",
+        success : function(result){
+            //- var result = JSON.parse(result);
+            var data = result.content ? result.content : result.error;
+            alert(data);
+          }
+        })
+      });
